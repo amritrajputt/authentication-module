@@ -5,3 +5,4 @@ import * as controller from "./auth.controller.js"
 
 const router = Router()
 router.post("/register",validate(RegisterDto),controller.register)
+router.get("/login",va)
