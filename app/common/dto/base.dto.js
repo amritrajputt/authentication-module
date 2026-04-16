@@ -1,5 +1,6 @@
+import joi from 'joi'
 class BaseDto {
-    static schema = Joi.object({})
+    static schema = joi.object({})
     static validate(data) {
         const { error, value } = this.schema.validate(data, { abortEarly: false, allowUnknown: true, stripUnknown: true })
         if (error) {
