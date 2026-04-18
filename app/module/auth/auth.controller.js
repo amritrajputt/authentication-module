@@ -23,7 +23,7 @@ const register = async (req, res) => {
 }
 const verifyMail = async (req, res) => {
     try {
-        const { token } = req.query  // from /verify-email?token=xxx
+        const { token } = req.query  
         const result = await verifyEmail(token)
         return ApiResponse.success(res, result, "Email verified successfully")
     } catch (error) {
