@@ -1,6 +1,6 @@
 # Architecture Walkthrough: The Authentication Module
 
-Your project is built using a very clean, professional architecture known as the **Controller-Service-Model** pattern. 
+This project is built using a very clean, professional architecture known as the **Controller-Service-Model** pattern. 
 
 This design keeps everything organized so that if you ever need to change your database, you don't have to rewrite your HTTP routes, and vice versa.
 
