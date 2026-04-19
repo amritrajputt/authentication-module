@@ -41,4 +41,26 @@ const sendVerificationEmail = async (email, token) => {
   });
 };
 
-export { sendMail, sendVerificationEmail };
+const sendResetPasswordEmail = async (email, token) => {
+  const subject = "Reset Your Password";
+  const html = `
+    <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto;">
+      <h2>Reset Your Password</h2>
+      <p>Thank you for requesting to reset your password. Click the link below to reset your password:</p>
+      <a href="${process.env.FRONTEND_URL}/reset-password?token=${token}" style="background-color: #4CAF50; color: white; padding: 10px 20px; text-decoration: none; border-radius: 5px;">Reset Password</a>
+      <p>If you didn't request this, please ignore this email.</p>
+      <p>This link will expire in 15 minutes.</p>
+    </div>
+  `;
+  const text = `Reset your password. Click the link to reset: ${process.env.FRONTEND_URL}/reset-password?token=${token}`;
+
+  await transporter.sendMail({
+    from: `${process.env.SMTP_FROM_EMAIL}`,
+    to: email,
+    subject,
+    html,
+    text,
+  });
+};
+
+export { sendMail, sendVerificationEmail, sendResetPasswordEmail };

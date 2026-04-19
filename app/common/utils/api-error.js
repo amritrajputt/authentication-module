@@ -7,11 +7,11 @@ class ApiError extends Error {
     }
 
     static badRequest(message = "Bad Request") {
-        throw ApiError.badRequest("Invalid input")
+        return new ApiError(400, message)
     }
 
     static conflict(message = "Conflict") {
-        throw ApiError.conflict("Email already in use")
+        return new ApiError(409, message)
     }
 
     static unauthorized(message = "unauthorized") {
@@ -19,7 +19,7 @@ class ApiError extends Error {
     }
 
     static internal(message = "Internal Server Error") {
-        throw ApiError.internal("Invalid input")
+        return new ApiError(500, message)
     }
 }
 

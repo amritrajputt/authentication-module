@@ -23,15 +23,9 @@ const verifyAccessToken = (token) => {
     }
 }
 
-const verifyRefreshToken = async (token) => {
+const verifyRefreshToken = (token) => {
     try {
-        const decoded = jwt.verify(token, process.env.JWT_SECRET)
-        const user = await User.findById(decoded.id).select("+refreshToken")
-        if (!user || user.refreshToken !== token) {
-            throw new Error("Invalid refresh token")
-        }
-
-        return decoded
+        return jwt.verify(token, process.env.JWT_SECRET)
     } catch (error) {
         console.error("Invalid refresh token", error)
         throw new Error("Invalid refresh token")
