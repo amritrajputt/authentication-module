@@ -9,7 +9,7 @@ import loginSchema from "./dto/login.dto.js"
 const router = Router()
 
 router.post("/register", validateMiddleware(registerSchema), controller.register)
-router.get("/login",validateMiddleware(loginSchema), controller.login)
+router.post("/login",validateMiddleware(loginSchema), controller.login)
 router.get("/verify-email", controller.verifyMail)  
 
 

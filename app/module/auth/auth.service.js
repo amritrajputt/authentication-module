@@ -40,7 +40,7 @@ const registerUser = async ({ email, password, name, role }) => {
 const verifyEmail = async (token) => {
     try {
         const hashedToken = hashToken(token)
-        const user = await User.findOne({ verificationToken: hashedToken })
+        const user = await User.findOne({ verificationToken: hashedToken }).select("+verificationToken")    
         if (!user) {
             throw new ApiError.unauthorized("Invalid or expired token")
         }
@@ -49,7 +49,6 @@ const verifyEmail = async (token) => {
         await user.save()
         return { message: "Email verified successfully" }
     } catch (error) {
-
         console.error("Error in email verification", error)
         throw error
     }
@@ -80,6 +79,7 @@ const loginUser = async ({ email, password }) => {
         throw error
     }
 }
+
 
 export {
     registerUser,
